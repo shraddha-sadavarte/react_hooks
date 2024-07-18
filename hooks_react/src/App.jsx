@@ -31,6 +31,18 @@ function App() {
       return {...prev, year:"2024"}
     })
   }
+
+  const[count, setCount] = useState(0);
+
+  const increseCount=()=>{
+    setCount(count+1)
+  }
+
+  const decreaseCount=()=>{
+    if(count>0){
+      setCount(count-1)
+    }
+  }
   return (
     <>
     <h1>
@@ -41,7 +53,12 @@ function App() {
     <h1>My {car.brand}</h1>
     <h2>It is a {car.colour} {car.brand} from {car.year}</h2>
     <button onClick={changeYear}>Change year</button>
+
+    <h3>Count: {count}</h3>
+    <button onClick={increseCount}>Increase count</button>
+    <button onClick={decreaseCount}>Decrease count</button>
     </>
+    
   )
 }
 
