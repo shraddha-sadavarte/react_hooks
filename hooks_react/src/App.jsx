@@ -53,7 +53,8 @@ function App() {
     setTimeout(()=>{
       setct(ct=>ct+1);
     },2000)
-  })
+  }, [ct]) //when empty array dependency is added it will execute function only when page is refreshed
+  //when ct is added to the array then it will execute the function when page is loded and when count gets change
   return (
     <>
     <h1><i>USESTATE HOOK</i></h1>
