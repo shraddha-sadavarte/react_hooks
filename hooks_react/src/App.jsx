@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
@@ -43,8 +43,20 @@ function App() {
       setCount(count-1)
     }
   }
+
+  //useEffect(cb,[])  cb=callback   []=array
+  const[ct,setct]=useState(0);
+ 
+  //when we use useEfect hook without any dependency it will execute callback function whenever any state changes
+  //here ct state is changing after every 2 sec
+  useEffect(()=>{
+    setTimeout(()=>{
+      setct(ct=>ct+1);
+    },2000)
+  })
   return (
     <>
+    <h1><i>USESTATE HOOK</i></h1>
     <h1>
       My favourite color is {color}!
     </h1>
@@ -57,6 +69,9 @@ function App() {
     <h3>Count: {count}</h3>
     <button onClick={increseCount}>Increase count</button>
     <button onClick={decreaseCount}>Decrease count</button>
+
+    <h1><i>USEEFFECT HOOK</i></h1>
+    <h3>I have rendered {ct} times</h3>
     </>
     
   )
