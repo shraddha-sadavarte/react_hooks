@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function App() {
 
@@ -55,6 +55,24 @@ function App() {
     },2000)
   }, [ct]) //when empty array dependency is added it will execute function only when page is refreshed
   //when ct is added to the array then it will execute the function when page is loded and when count gets change
+
+  //useRef hook
+  const[value,setValue]=useState(0);
+  const num = useRef(0);
+
+
+  //this will run when value changes
+  useEffect(()=>{
+    num.current=num.current+1;
+  },[value])
+
+  const inputVal=useRef();
+
+  const buttonclicked=()=>{
+    console.log(inputVal.current)
+    inputVal.current.style.background='blue';
+  }
+  
   return (
     <>
     <h1><i>USESTATE HOOK</i></h1>
@@ -73,7 +91,19 @@ function App() {
 
     <h1><i>USEEFFECT HOOK</i></h1>
     <h3>I have rendered {ct} times</h3>
+
+    <h1>USEREF HOOK</h1>
+    <button onClick={()=>{setValue(prev=>prev-1)}}>-1</button>
+    <h1>{value}</h1>
+    <button onClick={()=>{setValue(prev=>prev+1)}}>+1</button>
+    <h3>Render count: {num.current}</h3>
+
+    <input type='text' ref={inputVal}/>
+    <br/><br/>
+    <button onClick={buttonclicked}>Click here</button>
     </>
+
+    
     
   )
 }
